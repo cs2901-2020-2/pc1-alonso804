@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistrApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pc1-Alonso</a> &gt; <a href="index.source.html" class="el_package">pc1</a> &gt; <span class="el_source">RegistrApp.java</span></div><h1>RegistrApp.java</h1><pre class="source lang-java linenums">package pc1;
+import java.util.logging.Logger;
+
+public class RegistrApp {
+    private Entities entities;
+    private String nombreProfesor;
+    private String semestre;
+    private String codigo;
+    private String idioma;
+    private String curso;
+    private String seccion;
+    private String semana;
+    private String fecha;
+    private String horarioInicio;
+    private String horarioFin;
+    private String tipo;
+    private String link;
+
+    public String getNombreProfesor() {
+<span class="fc" id="L20">        return nombreProfesor;</span>
+    }
+
+    public String getSemestre() {
+<span class="nc" id="L24">        return semestre;</span>
+    }
+
+    public String getCodigo() {
+<span class="nc" id="L28">        return codigo;</span>
+    }
+
+    public String getIdioma() {
+<span class="nc" id="L32">        return idioma;</span>
+    }
+
+    public String getCurso() {
+<span class="nc" id="L36">        return curso;</span>
+    }
+
+    public String getSeccion() {
+<span class="nc" id="L40">        return seccion;</span>
+    }
+
+    public String getSemana() {
+<span class="nc" id="L44">        return semana;</span>
+    }
+
+    public String getFecha() {
+<span class="nc" id="L48">        return fecha;</span>
+    }
+
+    public String getHorarioInicio() {
+<span class="nc" id="L52">        return horarioInicio;</span>
+    }
+
+    public String getHorarioFin() {
+<span class="nc" id="L56">        return horarioFin;</span>
+    }
+
+    public String getTipo() {
+<span class="nc" id="L60">        return tipo;</span>
+    }
+
+    public String getLink() {
+<span class="nc" id="L64">        return link;</span>
+    }
+
+<span class="fc" id="L67">    public RegistrApp(String nombre) {</span>
+<span class="fc" id="L68">        this.nombreProfesor = nombre;</span>
+<span class="fc" id="L69">        this.semestre = &quot;&quot;;</span>
+<span class="fc" id="L70">        this.codigo = &quot;&quot;;</span>
+<span class="fc" id="L71">        this.idioma= &quot;&quot;;</span>
+<span class="fc" id="L72">        this.curso= &quot;&quot;;</span>
+<span class="fc" id="L73">        this.seccion= &quot;&quot;;</span>
+<span class="fc" id="L74">        this.semana= &quot;&quot;;</span>
+<span class="fc" id="L75">        this.fecha= &quot;&quot;;</span>
+<span class="fc" id="L76">        this.horarioInicio= &quot;&quot;;</span>
+<span class="fc" id="L77">        this.horarioFin= &quot;&quot;;</span>
+<span class="fc" id="L78">        this.tipo= &quot;&quot;;</span>
+<span class="fc" id="L79">        this.link= &quot;&quot;;</span>
+<span class="fc" id="L80">    }</span>
+
+    public boolean getDescription(String description) throws Exception {
+<span class="fc" id="L83">        String[] splited_1 = description.split(&quot;\\s*,\\s*&quot;);</span>
+
+<span class="pc bpc" id="L85" title="2 of 4 branches missed.">        if(splited_1[0].matches(&quot;(.*)-(.*)&quot;) &amp;&amp; splited_1[0].length() ==7) {</span>
+<span class="fc" id="L86">            this.semestre = splited_1[0];</span>
+        } else {
+<span class="nc" id="L88">            return false;</span>
+        }
+
+
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if(splited_1[1].length() ==6) {</span>
+<span class="fc" id="L93">            this.codigo = splited_1[1];</span>
+        } else {
+<span class="nc" id="L95">            return false;</span>
+        }
+
+<span class="pc bpc" id="L98" title="3 of 4 branches missed.">        if(splited_1[2].matches(&quot;ES&quot;) || splited_1[2].matches(&quot;EN&quot;)) {</span>
+<span class="fc" id="L99">            this.idioma = splited_1[2];</span>
+        } else {
+<span class="nc" id="L101">            return false;</span>
+        }
+
+<span class="fc" id="L104">        this.curso = splited_1[3];</span>
+<span class="fc" id="L105">        this.seccion = splited_1[4];</span>
+
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if(splited_1[5].matches(&quot;Semana(.*)&quot;)) {</span>
+<span class="fc" id="L108">            this.semana = splited_1[5];</span>
+        } else {
+<span class="nc" id="L110">            return false;</span>
+        }
+
+<span class="pc bpc" id="L113" title="2 of 4 branches missed.">        if(splited_1[7].matches(&quot;(.*)/(.*)&quot;) &amp;&amp; splited_1[7].length() == 5) {</span>
+<span class="fc" id="L114">            this.fecha = splited_1[7];</span>
+        } else {
+<span class="nc" id="L116">            return false;</span>
+        }
+
+<span class="fc" id="L119">        String[] splited_2 = splited_1[8].split(&quot;-&quot;);</span>
+<span class="pc bpc" id="L120" title="4 of 8 branches missed.">        if(splited_2[0].matches(&quot;(.*):(.*)&quot;) &amp;&amp; splited_2[0].length() == 5 &amp;&amp; splited_2[1].matches(&quot;(.*):(.*)&quot;) &amp;&amp; splited_2[1].length() == 5) {</span>
+<span class="fc" id="L121">            this.horarioInicio = splited_2[0];</span>
+<span class="fc" id="L122">            this.horarioFin = splited_2[1];</span>
+        } else {
+<span class="nc" id="L124">            return false;</span>
+        }
+
+<span class="pc bpc" id="L127" title="3 of 4 branches missed.">        if(splited_1[9].matches(&quot;Laboratorio&quot;) || splited_1[9].matches(&quot;Teoria&quot;)) {</span>
+<span class="fc" id="L128">            this.tipo = splited_1[9];</span>
+        } else {
+<span class="nc" id="L130">            return false;</span>
+        }
+
+<span class="fc" id="L133">        return true;</span>
+    }
+
+    public String notificate() throws Exception {
+<span class="nc bnc" id="L137" title="All 24 branches missed.">        if(this.nombreProfesor != &quot;&quot; &amp;&amp; this.semestre != &quot;&quot;  &amp;&amp; this.codigo != &quot;&quot; &amp;&amp; this.idioma != &quot;&quot; &amp;&amp; this.curso != &quot;&quot;</span>
+            &amp;&amp; this.seccion != &quot;&quot; &amp;&amp; this.semana != &quot;&quot; &amp;&amp; this.fecha != &quot;&quot; &amp;&amp; this.horarioInicio != &quot;&quot; &amp;&amp; this.horarioFin != &quot;&quot;
+            &amp;&amp; this.tipo != &quot;&quot; &amp;&amp; this.link != &quot;&quot;) {
+<span class="nc" id="L140">            entities.notificate(this.nombreProfesor);</span>
+<span class="nc" id="L141">            return &quot;Profesor: &quot; + this.nombreProfesor + &quot; registro correctamente.&quot;;</span>
+        } else {
+<span class="nc" id="L143">            throw new Exception(&quot;Profesor no se registro correctamente&quot;);</span>
+        }
+
+    }
+
+    public boolean getLink(String url) throws Exception {
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">        if(url.matches(&quot;https://utec.zoom.us/rec/share/(.*)&quot;)) {</span>
+<span class="fc" id="L150">            this.link = url;</span>
+<span class="fc" id="L151">            return true;</span>
+        } else {
+<span class="nc" id="L153">            return false;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

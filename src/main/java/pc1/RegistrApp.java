@@ -1,4 +1,5 @@
 package pc1;
+import java.util.logging.Logger;
 
 public class RegistrApp {
     private Entities entities;
@@ -15,6 +16,54 @@ public class RegistrApp {
     private String tipo;
     private String link;
 
+    public String getNombreProfesor() {
+        return nombreProfesor;
+    }
+
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public String getSeccion() {
+        return seccion;
+    }
+
+    public String getSemana() {
+        return semana;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public String getHorarioFin() {
+        return horarioFin;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
     public RegistrApp(String nombre) {
         this.nombreProfesor = nombre;
         this.semestre = "";
@@ -30,25 +79,26 @@ public class RegistrApp {
         this.link= "";
     }
 
-    public void getDescription(String description) throws Exception {
+    public boolean getDescription(String description) throws Exception {
         String[] splited_1 = description.split("\\s*,\\s*");
 
         if(splited_1[0].matches("(.*)-(.*)") && splited_1[0].length() ==7) {
             this.semestre = splited_1[0];
         } else {
-            throw new Exception("Error");
+            return false;
         }
+
 
         if(splited_1[1].length() ==6) {
             this.codigo = splited_1[1];
         } else {
-            throw new Exception("Error");
+            return false;
         }
 
-        if(splited_1[2] == "ES" || splited_1[2] == "EN") {
+        if(splited_1[2].matches("ES") || splited_1[2].matches("EN")) {
             this.idioma = splited_1[2];
         } else {
-            throw new Exception("Error");
+            return false;
         }
 
         this.curso = splited_1[3];
@@ -57,13 +107,13 @@ public class RegistrApp {
         if(splited_1[5].matches("Semana(.*)")) {
             this.semana = splited_1[5];
         } else {
-            throw new Exception("Error");
+            return false;
         }
 
         if(splited_1[7].matches("(.*)/(.*)") && splited_1[7].length() == 5) {
             this.fecha = splited_1[7];
         } else {
-            throw new Exception("Error");
+            return false;
         }
 
         String[] splited_2 = splited_1[8].split("-");
@@ -71,14 +121,16 @@ public class RegistrApp {
             this.horarioInicio = splited_2[0];
             this.horarioFin = splited_2[1];
         } else {
-            throw new Exception("Error");
+            return false;
         }
 
-        if(splited_1[9] == "Laboratorio" || splited_1[9] == "Teoria") {
+        if(splited_1[9].matches("Laboratorio") || splited_1[9].matches("Teoria")) {
             this.tipo = splited_1[9];
         } else {
-            throw new Exception("Error");
+            return false;
         }
+
+        return true;
     }
 
     public String notificate() throws Exception {
@@ -93,12 +145,12 @@ public class RegistrApp {
 
     }
 
-    public void getLink(String url) throws Exception {
+    public boolean getLink(String url) throws Exception {
         if(url.matches("https://utec.zoom.us/rec/share/(.*)")) {
             this.link = url;
+            return true;
         } else {
-            throw new Exception("Error");
+            return false;
         }
-
     }
 }
