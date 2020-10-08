@@ -1,7 +1,5 @@
 package pc1;
 
-import jdk.nashorn.internal.ir.EmptyNode;
-
 public class RegistrApp {
     private Entities entities;
     private String nombreProfesor;
@@ -18,19 +16,18 @@ public class RegistrApp {
     private String link;
 
     public RegistrApp(String nombre) {
-        nombreProfesor = nombre;
-
-        semestre = "";
-        codigo = "";
-        idioma= "";
-        curso= "";
-        seccion= "";
-        semana= "";
-        fecha= "";
-        horarioInicio= "";
-        horarioFin= "";
-        tipo= "";
-        link= "";
+        this.nombreProfesor = nombre;
+        this.semestre = "";
+        this.codigo = "";
+        this.idioma= "";
+        this.curso= "";
+        this.seccion= "";
+        this.semana= "";
+        this.fecha= "";
+        this.horarioInicio= "";
+        this.horarioFin= "";
+        this.tipo= "";
+        this.link= "";
     }
 
     public void getDescription(String description) throws Exception {
@@ -84,13 +81,16 @@ public class RegistrApp {
         }
     }
 
-    public String notificate(){
+    public String notificate() throws Exception {
         if(this.nombreProfesor != "" && this.semestre != ""  && this.codigo != "" && this.idioma != "" && this.curso != ""
             && this.seccion != "" && this.semana != "" && this.fecha != "" && this.horarioInicio != "" && this.horarioFin != ""
             && this.tipo != "" && this.link != "") {
             entities.notificate(this.nombreProfesor);
             return "Profesor: " + this.nombreProfesor + " registro correctamente.";
+        } else {
+            throw new Exception("Profesor no se registro correctamente");
         }
+
     }
 
     public void getLink(String url) throws Exception {
